@@ -83,7 +83,7 @@ void pixelBoolMatrix::fill (point pIgnition, bool menyala){
 			//mengisi
 			set(p,menyala);
 
-			//menaruh tetangganya di dalma queue
+			//menaruh tetangganya di dalam queue
 			pointsToFill.push(p.hasilGeser(1,0));
 			pointsToFill.push(p.hasilGeser(-1,0));
 			pointsToFill.push(p.hasilGeser(0,1));

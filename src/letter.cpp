@@ -14,6 +14,7 @@ void letter::draw() {
 	for (vector<polygon>::iterator i=bidang.begin(); i!=bidang.end();i++) {
 		lettermatrix.setSolid(*i,true);
 	}
+	
 	for (vector<polygon>::iterator i=lubang.begin(); i!=lubang.end();i++) {
 		lettermatrix.setSolid(*i,false);
 	}
