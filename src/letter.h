@@ -2,6 +2,7 @@
 #define letter_h
 
 #include "polygon.h"
+#include "pixelBoolMatrix.h"
 #include <vector>
 
 #define WIDTH 8
@@ -11,12 +12,12 @@ using namespace std;
 
 class letter {
 	public:
-	letter(polygon bidang, vector<polygon> lubang, int size);
+	letter(vector<polygon> bidang, vector<polygon> lubang, int size);
 	~letter();
 	void draw();
 
 	protected:
-	polygon bidang;
+	vector<polygon> bidang;
 	vector<polygon> lubang;
 	int size;
 	pixelBoolMatrix lettermatrix(WIDTH,HEIGHT);

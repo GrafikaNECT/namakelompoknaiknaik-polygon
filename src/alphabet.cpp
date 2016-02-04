@@ -1,5 +1,6 @@
 #include "letter.h"
 #include <string>
+#include <vector>
 
 alphabet::alphabet() {
 	initAlphabet();
@@ -10,7 +11,7 @@ alphabet::initAlphabet() {
 }
 
 letter alphabet::getLetter(char c) {
-	return alphabet[charIndex(c)];
+	return alphabet.at(charIndex(c));
 }
 
 int alphabet::charIndex(char c) {
