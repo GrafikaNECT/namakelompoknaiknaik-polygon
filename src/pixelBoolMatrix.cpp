@@ -5,16 +5,33 @@
 #include <queue>
 
 pixelBoolMatrix::pixelBoolMatrix(int _width, int _height):width(_width),height(_height){
-	tab = new bool*[width];
+	tab.resize(width);
 	for (int i=0;i<width;i++){
-		tab[i] = new bool[height];
+		tab[i].resize(height);
 	}
 };
 
+
+pixelBoolMatrix::pixelBoolMatrix(const pixelBoolMatrix& rhs){
+	tab.resize(width);
+	for (int i=0;i<width;i++){
+		tab[i].resize(height);
+		for (int j=0;j<height;j++)
+			tab[i][j]=rhs.tab[i][j];
+	}
+}
+
+pixelBoolMatrix& pixelBoolMatrix::operator=(const pixelBoolMatrix& rhs){
+	tab.resize(width);
+	for (int i=0;i<width;i++){
+		tab[i].resize(height);
+		for (int j=0;j<height;j++)
+			tab[i][j]=rhs.tab[i][j];
+	}
+
+}
+
 pixelBoolMatrix::~pixelBoolMatrix(){
-	for (int i=0;i<width-1;i++)
-		delete tab[i];
-	delete tab;
 }
 
 void pixelBoolMatrix::draw(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char Alpha){
@@ -30,7 +47,7 @@ void pixelBoolMatrix::draw(point p, unsigned char R, unsigned char G, unsigned c
 }
 
 void pixelBoolMatrix::set(int x, int y, bool menyala){
-	if (x>=0 && y >= 0 &&x<width && y <width)
+	if (x>=0 && y >= 0 &&x<width && y <height)
 		tab[x][y]=menyala;
 }
 void pixelBoolMatrix::set(point p, bool menyala){
@@ -70,6 +87,7 @@ void pixelBoolMatrix::fill(int xIgnition, int yIgnition, bool menyala){
 	point p(xIgnition,yIgnition);
 	fill(p,menyala);
 }
+
 void pixelBoolMatrix::fill (point pIgnition, bool menyala){
 	std::queue<point> pointsToFill;
 	pointsToFill.push(pIgnition);
@@ -99,31 +117,38 @@ void pixelBoolMatrix::setWireframe(polygon p, bool menyala){
 	}
 	setLine(p[i],p[0],menyala);
 }
+#include<algorithm>
 void pixelBoolMatrix::setSolid(polygon p, bool menyala){
+//TODO ganti jadi yang dibagi jadi segitiga-segitiga
 	//===gambar wireframe===
 	setWireframe(p,menyala);
 
 
 
-	//===FILLING===
-	//cari titik paling kanan
-	int imax=0;
-	for (int i=0;i<p.size();i++){
-		if (p[i].getX()>p[imax].getX())
-			imax=i;
+	//coba fill pakai point-in-polygon http://alienryderflex.com/polygon_fill/
+	//TODO tukar loop x dan y supaya cepat (mungkin, cobain)
+	for (int y=0;y<getHeight();y++){
+		//ambil intersection dengan garis
+		std::vector<int> intersections;
+		for (int i=0;i<p.size()-1;i++){
+			if ((y<p[i].getY() && y > p[i+1].getY()) ||
+				 (y>p[i].getY() && y < p[i+1].getY())){				int x=(y-p[i].getY())*(p[i+1].getX()-p[i].getX())/(p[i+1].getY()-p[i].getY())+p[i].getX();
+				intersections.push_back(x);
+			}
+		}
+		int i=p.size()-1;
+		if ((y<p[i].getY() && y > p[0].getY()) ||
+			 (y>p[i].getY() && y < p[0].getY())){				int x=(y-p[i].getY())*(p[0].getY()-p[i].getY())*(p[0].getX()-p[i].getX())+p[i].getX();
+			intersections.push_back(x);
+		}
+
+		std::sort(intersections.begin(),intersections.end());
+
+		for (int i=0;i<intersections.size();i+=2){
+			for (int x=intersections[i];x<intersections[i+1];x++)
+				set(x,y,menyala);
+		}
 	}
-
-	//cari titik sebelumnya dan sesudahnya
-	int iprev = imax-1; if (iprev<0) iprev=p.size()-1;
-	int inext = imax+1; if (inext>p.size()) inext=0;
-
-	//menghitung titik bakar
-	//ASUMSI p[imax],p[iprev],p[inext] tidak segaris
-	int xIgnite = (p[imax].getX()+p[iprev].getX()+p[inext].getX())/3;
-	int yIgnite = (p[imax].getY()+p[iprev].getY()+p[inext].getY())/3;
-
-	//mengisi
-	fill(xIgnite,yIgnite,true);
 }
 
 

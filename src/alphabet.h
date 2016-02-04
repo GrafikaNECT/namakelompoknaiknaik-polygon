@@ -13,5 +13,6 @@ class alphabet {
 
 	protected:
 	vector<letter> alphabet;
+	string alphabetstring;
 	int charIndex(char c);
 }
