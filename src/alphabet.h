@@ -2,17 +2,19 @@
 #define alphabet_h
 
 #include "letter.h"
-#include <vector>
+#include <map>
+
+#include <fstream>
 
 class alphabet {
 	public:
 	alphabet();
-	~alphabet();
+	alphabet(std::ifstream& file);
 	void initAlphabet();
 	letter getLetter(char c);
 
 	protected:
-	vector<letter> alphabet;
-	string alphabetstring;
-	int charIndex(char c);
-}
+	std::map<char, letter> letters;
+};
+
+#endif

@@ -22,12 +22,10 @@ void letter::draw() {
 	}
 }
 */
-
-#define padding_size 0
+#define padding_size 3
 pixelBoolMatrix letter::toPixelBoolMatrix(float resize){
 	int matwidth = (width+padding_size) * resize;
 	int matheight = (height+padding_size) * resize;
-
 	pixelBoolMatrix lettermatrix(matwidth,matheight);
 	lettermatrix.setAll(false);
 	for (vector<polygon>::iterator i=bidang.begin(); i!=bidang.end();i++) {

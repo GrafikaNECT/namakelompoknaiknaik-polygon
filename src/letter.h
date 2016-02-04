@@ -9,6 +9,7 @@ using namespace std;
 
 class letter {
 	public:
+	letter(){};
 	letter(vector<polygon> bidang, vector<polygon> lubang, int width, int height);
 	//~letter();
 
