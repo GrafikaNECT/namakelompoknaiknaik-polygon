@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 void teksnaiknaik(std::string txt, alphabet& mainalphabet){
-	for (int y=getYRes()-100;y>-200;y-=30){
+	for (int y=getYRes()-100;y>-200;y-=5){
 		drawCanvas(0,0,0,255);
 		mainalphabet.drawTextCentered(txt,y,1+(((float)getYRes()-y)*5/getYRes()),
 			(255+y)%256,
@@ -32,8 +32,9 @@ int main(){
 
 	initializePrinter();
 
-	for (int i=0;i<n;i++){
 		std::string txt;
+		std::getline(namesfile,txt);
+	for (int i=0;i<n;i++){
 		std::getline(namesfile,txt);
 		teksnaiknaik(txt,mainalphabet);			
 	}
