@@ -118,6 +118,7 @@ void pixelBoolMatrix::setWireframe(polygon p, bool menyala){
 	setLine(p[i],p[0],menyala);
 }
 void pixelBoolMatrix::setSolid(polygon p, bool menyala){
+//TODO ganti jadi yang dibagi jadi segitiga-segitiga
 	//===gambar wireframe===
 	setWireframe(p,menyala);
 
@@ -141,7 +142,7 @@ void pixelBoolMatrix::setSolid(polygon p, bool menyala){
 	int yIgnite = (p[imax].getY()+p[iprev].getY()+p[inext].getY())/3;
 
 	//mengisi
-	fill(xIgnite,yIgnite,true);
+	fill(xIgnite,yIgnite,menyala);
 }
 
 

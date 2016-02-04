@@ -29,17 +29,18 @@ int main(){
 	std::vector<polygon> bidangs;
 	bidangs.push_back(p);
 
-	std::vector<polygon>lubangs;
+	polygon p2;
+	p2.push_back(3,5);
+	p2.push_back(4,10);
+	p2.push_back(5,5);
 
-	letter letterAKebalik(bidangs,lubangs,81,121);
+	std::vector<polygon>lubangs;
+	lubangs.push_back(p2);
+
+	letter letterAKebalik(bidangs,lubangs,9,13);
 	initializePrinter();
 	pixelBoolMatrix pbm1 = letterAKebalik.toPixelBoolMatrix(1);
-	for (int i=0;i<pbm1.getHeight();i++){
-		for (int j=0;j<pbm1.getWidth();j++){
-		//	std::cout<<pbm1.get(j,i);
-		}
-		//std::cout<<std::endl;
-	}
+
 	drawCanvas(0,0,0,255);
 	pbm1.draw(10,10,255,255,255,255);
 	printToScreen();
