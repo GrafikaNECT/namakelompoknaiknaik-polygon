@@ -11,6 +11,29 @@ pixelBoolMatrix::pixelBoolMatrix(int _width, int _height):width(_width),height(_
 	}
 };
 
+
+pixelBoolMatrix::pixelBoolMatrix(const pixelBoolMatrix& rhs){
+	tab = new bool*[width];
+	for (int i=0;i<width;i++){
+		tab[i] = new bool[height];
+		for (int j=0;j<height;j++)
+			tab[i][j]=rhs.tab[i][j];
+	}
+}
+
+pixelBoolMatrix& pixelBoolMatrix::operator=(const pixelBoolMatrix& rhs){
+	for (int i=0;i<width-1;i++)
+		delete tab[i];
+	delete tab;
+	tab = new bool*[width];
+	for (int i=0;i<width;i++){
+		tab[i] = new bool[height];
+		for (int j=0;j<height;j++)
+			tab[i][j]=rhs.tab[i][j];
+	}
+
+}
+
 pixelBoolMatrix::~pixelBoolMatrix(){
 	for (int i=0;i<width-1;i++)
 		delete tab[i];
