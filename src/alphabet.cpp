@@ -67,6 +67,11 @@ alphabet::alphabet(std::ifstream& file){
 			std::cout<<std::endl;
 		}
 	}
+	//tambah karakter blank (spasi)
+	std::vector<polygon> bidangnul(0);
+	std::vector<polygon> lubangnul(0);
+	letter ll(bidangnul, lubangnul, width, height);
+	letters[' ']=ll;
 }
 
 void alphabet::initAlphabet() {
