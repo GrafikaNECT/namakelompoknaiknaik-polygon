@@ -37,6 +37,7 @@ int main(){
 	std::vector<polygon>lubangs;
 	lubangs.push_back(p2);
 
+// Ini mau implementasi teks
 	letter letterAKebalik(bidangs,lubangs,9,13);
 	initializePrinter();
 	pixelBoolMatrix pbm1 = letterAKebalik.toPixelBoolMatrix(1);
@@ -45,7 +46,7 @@ int main(){
 	pbm1.draw(10,10,255,255,255,255);
 	printToScreen();
 	sleep(1);
-
+// Akhir
 
 
 	for (int i=0;i<100;i++){
