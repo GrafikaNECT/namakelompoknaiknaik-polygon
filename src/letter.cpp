@@ -3,7 +3,7 @@
 
 using namespace std;
 
-letter::letter(polygon _bidang, vector<polygon> _lubang, int _size) {
+letter::letter(vector<polygon> _bidang, vector<polygon> _lubang, int _size) {
 	bidang = _bidang;
 	lubang = _lubang;
 	size = _size;
