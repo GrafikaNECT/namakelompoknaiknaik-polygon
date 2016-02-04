@@ -14,19 +14,19 @@ int main(){
 	p.push_back(30,400);
 
 	drawCanvas(0,0,0,255);
-	pixelBoolMatrix mat(10000,10000);
+	pixelBoolMatrix mat(1000,1000);
 	mat.setWireframe(p,true);
 	mat.draw(10,10,255,255,255,255);
 	printToScreen();
 	sleep(1);
-
+/*
 	mat.fill(30,200,true);
 	drawCanvas(0,0,0,255);
 	mat.draw(10,10,255,255,255,255);
 	printToScreen();
 	sleep(1);
 	std::cout<<"check\n"<<std::endl;
-
+*/
 	drawCanvas(0,0,0,255);
 	mat.setAll(false);
 	mat.setSolid(p,true);
