@@ -3,12 +3,14 @@
 
 #include <vector>
 #include "point.h"
-#include "pixelBoolMatrix.h"
 
-class polygon: std::vector<point>{
+class polygon: public std::vector<point>{
 	public:
 	polygon geser(int deltax, int deltay);
-	polygon perbesar(float scale); 
+	polygon perbesar(float scale);
+
+	void push_back(int x, int y); 
+	void push_back(const point& p){std::vector<point>::push_back(p);};
 
 	private:
 	

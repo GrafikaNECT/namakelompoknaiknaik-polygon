@@ -7,7 +7,7 @@ class point{
 	int y;
 
 	public:
-	point P(int _x, int _y):x(_x),y(_y){};
+	point(int _x, int _y):x(_x),y(_y){};
 	int getX(){return x;};
 	int getY(){return y;};
 
