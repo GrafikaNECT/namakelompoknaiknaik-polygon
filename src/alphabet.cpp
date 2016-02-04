@@ -14,7 +14,7 @@ alphabet::initAlphabet() {
 
 letter alphabet::getLetter(char c) {
 	if (isalpha(c)) {
-		c = tolower(c);
+		c = toupper(c);
 	}
 	return alphabet.at(charIndex(c));
 }
