@@ -8,10 +8,24 @@
 void testPrintChar(alphabet mainalphabet, char c){
 
 		std::cout<<"printing: "<<c<<std::endl;
-		letter l = mainalphabet.getLetter(c);
-		pixelBoolMatrix pbm = l.toPixelBoolMatrix(20);
 		drawCanvas(0,0,0,255);
-		pbm.draw(20,20,255,255,255,255);		
+		mainalphabet.drawChar(c,20,20,20,255,255,255,255);		
+		printToScreen();
+}
+
+void testPrintText(alphabet mainalphabet, std::string s){
+
+		std::cout<<"printing: "<<s<<std::endl;
+		drawCanvas(0,0,0,255);
+		mainalphabet.drawText(s,20,20,3,255,255,255,255);		
+		printToScreen();
+}
+
+void testPrintTextCentered(alphabet mainalphabet, std::string s){
+
+		std::cout<<"printing: "<<s<<std::endl;
+		drawCanvas(0,0,0,255);
+		mainalphabet.drawTextCentered(s,20,3,255,255,255,255);		
 		printToScreen();
 }
 
@@ -24,15 +38,19 @@ int main(){
 	initializePrinter();
 	for (char c = 'A';c<'X';c++){
 		testPrintChar(mainalphabet, c);
-		usleep(300000);
+		usleep(30000);
 	}
 	testPrintChar(mainalphabet, 'Y');
-		usleep(300000);
+		usleep(30000);
 		testPrintChar(mainalphabet, 'Z');
-		usleep(300000);
+		usleep(30000);
 		testPrintChar(mainalphabet, '!');
-		usleep(300000);
+		usleep(30000);
 		testPrintChar(mainalphabet, '.');
+		usleep(30000);
+		testPrintText(mainalphabet, "ABCDEFGH");
+		usleep(300000);
+		testPrintTextCentered(mainalphabet, "ABCDEFGH");
 		usleep(300000);
 	finishPrinter();
 }

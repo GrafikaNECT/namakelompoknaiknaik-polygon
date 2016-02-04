@@ -12,6 +12,9 @@ alphabet::alphabet(std::ifstream& file){
 	int width,height;
 	file>>width;
 	file>>height;
+
+	default_width=width;
+	default_height=height;
 	
 	int n;
 	file>>n;
@@ -72,4 +75,26 @@ void alphabet::initAlphabet() {
 
 letter alphabet::getLetter(char c) {
 	return letters[c];
+}
+int alphabet::calculateOneCharSpace(float size){
+	return (default_width+5)*size;
+}
+
+void alphabet::drawChar(char a, int X, int Y, float size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+	pixelBoolMatrix pbm = getLetter(a).toPixelBoolMatrix(size);
+	pbm.draw(X,Y,R,G,B,alpha);
+}
+
+void alphabet::drawText(std::string a, int X, int Y, float size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+	int onecharspace = calculateOneCharSpace(size);
+	for (int i=0;i<a.length();i++){
+		drawChar(a[i],X+onecharspace*i,Y,size,R,G,B,alpha);
+	}
+}
+
+void alphabet::drawTextCentered(std::string a, int Y, float size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+	int onecharspace = calculateOneCharSpace(size);
+	int X = (getXRes()-a.length()*onecharspace)/2;
+	drawText(a,X,Y,size,R,G,B,alpha);
+    
 }
