@@ -5,20 +5,20 @@
 #include "pixelBoolMatrix.h"
 #include <vector>
 
-#define WIDTH 8
-#define HEIGHT 12
-
 using namespace std;
 
 class letter {
 	public:
-	letter(vector<polygon> bidang, vector<polygon> lubang, int size);
+	letter(vector<polygon> bidang, vector<polygon> lubang, int width, int height);
 	~letter();
-	void draw();
+
+	//mengubah ke pixelBoolMatrix
+	//bila resize lebih dari 1, yang didapat adalah pixelBoolMatrix yang diperbesar
+	pixelBoolMatrix toPixelBoolMatrix(float resize = 1);
 
 	protected:
 	vector<polygon> bidang;
 	vector<polygon> lubang;
-	int size;
-	pixelBoolMatrix lettermatrix(WIDTH,HEIGHT);
+	int width;
+	int height;
 }
