@@ -23,7 +23,7 @@ void letter::draw() {
 }
 */
 
-#define padding_size 10
+#define padding_size 0
 pixelBoolMatrix letter::toPixelBoolMatrix(float resize){
 	int matwidth = (width+padding_size) * resize;
 	int matheight = (height+padding_size) * resize;
