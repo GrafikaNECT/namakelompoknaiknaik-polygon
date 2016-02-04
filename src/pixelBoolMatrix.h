@@ -9,6 +9,7 @@
 class pixelBoolMatrix{
 	public:
 	pixelBoolMatrix(int _width, int _height);
+	~pixelBoolMatrix();
 
 	void draw(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char Alpha);
 	void draw(point p, unsigned char R, unsigned char G, unsigned char B, unsigned char Alpha);
@@ -35,7 +36,7 @@ class pixelBoolMatrix{
 
 	private:
 	int width,height;
-	std::vector< std::vector <bool> > tab;
+	bool** tab;
 
 	int sign(int x);
 

@@ -4,11 +4,17 @@
 #include <math.h>
 
 pixelBoolMatrix::pixelBoolMatrix(int _width, int _height):width(_width),height(_height){
+	tab = new bool*[width];
 	for (int i=0;i<width;i++){
-		std::vector<bool> curRow(_height);
-		tab.push_back(curRow);
+		tab[i] = new bool[height];
 	}
 };
+
+pixelBoolMatrix::~pixelBoolMatrix(){
+	for (int i=0;i<width-1;i++)
+		delete tab[i];
+	delete tab;
+}
 
 void pixelBoolMatrix::draw(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char Alpha){
 	for (int i=0;i<width;i++){
@@ -57,6 +63,14 @@ void pixelBoolMatrix::setLine(int x1, int x2, int y1, int y2, bool menyala){
 }
 void pixelBoolMatrix::setLine(point p1, point p2, bool menyala){
 	setLine(p1.getX(),p2.getX(),p1.getY(),p2.getY(),menyala);
+}
+
+
+void pixelBoolMatrix::fill(int xIgnition, int yIgnition, bool menyala){
+	//TODO
+}
+void pixelBoolMatrix::fill (point pIgnition, bool menyala){
+	//TODO
 }
 
 void pixelBoolMatrix::setWireframe(polygon p, bool menyala){
