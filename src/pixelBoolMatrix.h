@@ -9,6 +9,8 @@
 class pixelBoolMatrix{
 	public:
 	pixelBoolMatrix(int _width, int _height);
+	pixelBoolMatrix(const pixelBoolMatrix& rhs);
+	pixelBoolMatrix& operator=(const pixelBoolMatrix& rhs);
 	~pixelBoolMatrix();
 
 	void draw(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char Alpha);
