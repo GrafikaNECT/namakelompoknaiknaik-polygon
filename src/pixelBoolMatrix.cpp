@@ -2,6 +2,7 @@
 #include "print.h"
 
 #include <math.h>
+#include <queue>
 
 pixelBoolMatrix::pixelBoolMatrix(int _width, int _height):width(_width),height(_height){
 	tab = new bool*[width];
@@ -65,12 +66,30 @@ void pixelBoolMatrix::setLine(point p1, point p2, bool menyala){
 	setLine(p1.getX(),p2.getX(),p1.getY(),p2.getY(),menyala);
 }
 
-
 void pixelBoolMatrix::fill(int xIgnition, int yIgnition, bool menyala){
-	//TODO
+	point p(xIgnition,yIgnition);
+	fill(p,menyala);
 }
 void pixelBoolMatrix::fill (point pIgnition, bool menyala){
-	//TODO
+	std::queue<point> pointsToFill;
+	pointsToFill.push(pIgnition);
+
+	while (!pointsToFill.empty()){
+		point p = pointsToFill.front();
+		pointsToFill.pop();
+
+		if (p.getX()>=0 && p.getY()>=0 &&p.getX()<getWidth() && p.getY()<getHeight())
+		if (get(p)!=menyala){
+			//mengisi
+			set(p,menyala);
+
+			//menaruh tetangganya di dalma queue
+			pointsToFill.push(p.hasilGeser(1,0));
+			pointsToFill.push(p.hasilGeser(-1,0));
+			pointsToFill.push(p.hasilGeser(0,1));
+			pointsToFill.push(p.hasilGeser(0,-1));
+		}
+	}
 }
 
 void pixelBoolMatrix::setWireframe(polygon p, bool menyala){

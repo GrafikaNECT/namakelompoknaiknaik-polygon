@@ -17,6 +17,13 @@ int main(){
 	pixelBoolMatrix mat(10000,10000);
 	mat.setWireframe(p,true);
 	mat.draw(10,10,255,255,255,255);
+	printToScreen();
+	sleep(1);
+
+	mat.fill(30,200,true);
+	drawCanvas(0,0,0,255);
+	mat.draw(10,10,255,255,255,255);
+	sleep(1);
 
 	pixelBoolMatrix mat2(100,100);
 	mat.setAll(true);

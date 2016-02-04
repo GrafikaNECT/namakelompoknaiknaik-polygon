@@ -15,6 +15,10 @@ class point{
 	void setY(int _y){y=_y;};
 
 	void geser(int _x, int _y){x+=_x; y+=_y;};
+	point hasilGeser(int _x, int _y){
+		point p(getX()+_x,getY()+_y);
+		return p;
+	};
 };
 
 #endif
