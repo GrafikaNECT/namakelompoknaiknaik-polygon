@@ -23,6 +23,15 @@ int main(){
 	mat.fill(30,200,true);
 	drawCanvas(0,0,0,255);
 	mat.draw(10,10,255,255,255,255);
+	printToScreen();
+	sleep(1);
+	std::cout<<"check\n"<<std::endl;
+
+	drawCanvas(0,0,0,255);
+	mat.setAll(false);
+	mat.setSolid(p,true);
+	mat.draw(10,10,255,255,255,255);
+	printToScreen();
 	sleep(1);
 
 	pixelBoolMatrix mat2(100,100);

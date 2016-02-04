@@ -100,7 +100,30 @@ void pixelBoolMatrix::setWireframe(polygon p, bool menyala){
 	setLine(p[i],p[0],menyala);
 }
 void pixelBoolMatrix::setSolid(polygon p, bool menyala){
-	///////TODO kerjakan nanti
+	//===gambar wireframe===
+	setWireframe(p,menyala);
+
+
+
+	//===FILLING===
+	//cari titik paling kanan
+	int imax=0;
+	for (int i=0;i<p.size();i++){
+		if (p[i].getX()>p[imax].getX())
+			imax=i;
+	}
+
+	//cari titik sebelumnya dan sesudahnya
+	int iprev = imax-1; if (iprev<0) iprev=p.size()-1;
+	int inext = imax+1; if (inext>p.size()) inext=0;
+
+	//menghitung titik bakar
+	//ASUMSI p[imax],p[iprev],p[inext] tidak segaris
+	int xIgnite = (p[imax].getX()+p[iprev].getX()+p[inext].getX())/3;
+	int yIgnite = (p[imax].getY()+p[iprev].getY()+p[inext].getY())/3;
+
+	//mengisi
+	fill(xIgnite,yIgnite,true);
 }
 
 
