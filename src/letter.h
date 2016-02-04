@@ -10,7 +10,7 @@ using namespace std;
 class letter {
 	public:
 	letter(vector<polygon> bidang, vector<polygon> lubang, int width, int height);
-	~letter();
+	//~letter();
 
 	//mengubah ke pixelBoolMatrix
 	//bila resize lebih dari 1, yang didapat adalah pixelBoolMatrix yang diperbesar
@@ -21,4 +21,6 @@ class letter {
 	vector<polygon> lubang;
 	int width;
 	int height;
-}
+};
+
+#endif

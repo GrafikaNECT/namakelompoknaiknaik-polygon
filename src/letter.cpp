@@ -1,3 +1,4 @@
+#include "letter.h"
 #include "polygon.h"
 #include "pixelBoolMatrix.h"
 #include <vector>
@@ -23,16 +24,19 @@ void letter::draw() {
 */
 
 
-pixelBoolMatrix toPixelBoolMatrix(float resize){
+pixelBoolMatrix letter::toPixelBoolMatrix(float resize){
 	int matwidth = width * resize;
 	int matheight = height * resize;
 
 	pixelBoolMatrix lettermatrix(matwidth,matheight);
+	lettermatrix.setAll(false);
 	for (vector<polygon>::iterator i=bidang.begin(); i!=bidang.end();i++) {
-		lettermatrix.setSolid(*i,true);
+		polygon p = i->hasilPerbesar(resize);
+		lettermatrix.setSolid(p,true);
 	}
 	for (vector<polygon>::iterator i=lubang.begin(); i!=lubang.end();i++) {
-		lettermatrix.setSolid(*i,false);
+		polygon p = i->hasilPerbesar(resize);
+		lettermatrix.setSolid(p,false);
 	}
 	return lettermatrix;
 }
