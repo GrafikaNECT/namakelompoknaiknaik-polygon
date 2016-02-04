@@ -5,29 +5,26 @@
 #include <queue>
 
 pixelBoolMatrix::pixelBoolMatrix(int _width, int _height):width(_width),height(_height){
-	tab = new bool*[width];
+	tab.resize(width);
 	for (int i=0;i<width;i++){
-		tab[i] = new bool[height];
+		tab[i].resize(height);
 	}
 };
 
 
 pixelBoolMatrix::pixelBoolMatrix(const pixelBoolMatrix& rhs){
-	tab = new bool*[width];
+	tab.resize(width);
 	for (int i=0;i<width;i++){
-		tab[i] = new bool[height];
+		tab[i].resize(height);
 		for (int j=0;j<height;j++)
 			tab[i][j]=rhs.tab[i][j];
 	}
 }
 
 pixelBoolMatrix& pixelBoolMatrix::operator=(const pixelBoolMatrix& rhs){
-	for (int i=0;i<width-1;i++)
-		delete tab[i];
-	delete tab;
-	tab = new bool*[width];
+	tab.resize(width);
 	for (int i=0;i<width;i++){
-		tab[i] = new bool[height];
+		tab[i].resize(height);
 		for (int j=0;j<height;j++)
 			tab[i][j]=rhs.tab[i][j];
 	}
@@ -35,9 +32,6 @@ pixelBoolMatrix& pixelBoolMatrix::operator=(const pixelBoolMatrix& rhs){
 }
 
 pixelBoolMatrix::~pixelBoolMatrix(){
-	for (int i=0;i<width-1;i++)
-		delete tab[i];
-	delete tab;
 }
 
 void pixelBoolMatrix::draw(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char Alpha){
@@ -53,7 +47,7 @@ void pixelBoolMatrix::draw(point p, unsigned char R, unsigned char G, unsigned c
 }
 
 void pixelBoolMatrix::set(int x, int y, bool menyala){
-	if (x>=0 && y >= 0 &&x<width && y <width)
+	if (x>=0 && y >= 0 &&x<width && y <height)
 		tab[x][y]=menyala;
 }
 void pixelBoolMatrix::set(point p, bool menyala){
@@ -93,6 +87,7 @@ void pixelBoolMatrix::fill(int xIgnition, int yIgnition, bool menyala){
 	point p(xIgnition,yIgnition);
 	fill(p,menyala);
 }
+
 void pixelBoolMatrix::fill (point pIgnition, bool menyala){
 	std::queue<point> pointsToFill;
 	pointsToFill.push(pIgnition);

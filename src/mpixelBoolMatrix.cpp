@@ -40,7 +40,7 @@ int main(){
 	printToScreen();
 
 	usleep(1000);
-/*
+
 		pixelBoolMatrix mattt(getXRes(),getYRes());
 	for (int i=0;i<100;i++){
 		drawCanvas(0,0,0,255);
@@ -58,6 +58,6 @@ int main(){
 		std::cout<<"check"<<std::endl;
 		usleep(100);
 	}
-*/
+
 	finishPrinter();
 }

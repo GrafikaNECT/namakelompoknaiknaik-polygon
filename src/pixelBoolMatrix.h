@@ -38,7 +38,7 @@ class pixelBoolMatrix{
 
 	private:
 	int width,height;
-	bool** tab;
+	std::vector<std::vector<bool> >tab;
 
 	int sign(int x);
 
